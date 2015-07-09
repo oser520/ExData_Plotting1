@@ -14,6 +14,9 @@
 # however, a file for each of these functions is not only overkill, but also
 # poor design, because all of these functions are related, and hece it makes
 # more sense to define them in the same file.
+# 
+# If you want to see the images created by these functions without running R,
+# then see 'Reconstructing plots' in the README.
 
 readProj1Data <- function(fileName='household_power_consumption.txt') {
   # Reads the data for household power consumption and returns a data frame.

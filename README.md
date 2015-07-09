@@ -122,9 +122,11 @@ defined them in the same file, *proj1.R*.
 * For each plotting task, I defined two functions: one that draws the actual
 plot, and the other a wrapper for it that saves the plot to a PNG file. For
 example, *plot1work* draws the histogram and *plot1* saves the histogram to an
-output file. Please keep these two points in mind when grading my work, and
+output file.
+
+Please keep these two points in mind when grading my work, and
 don't be quick to strike off points because you don't see code under the
-function that you expect to see it. The changes are minimal, and you shouldn't
+function where you expect to see it. The changes are minimal, and you shouldn't
 have any trouble finding the source code for each plotting task. My reasons for
 going this route are a lack of need, and bad design, to define each of the
 plotting functions in its own file, and to make the whole thing more modular.
