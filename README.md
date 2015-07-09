@@ -112,3 +112,93 @@ The four plots that you will need to construct are shown below.
 
 ![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5.png) 
 
+
+## Reconstructing plots
+For those fellow Courserians charged with the task of grading my work, let it be
+known that I've deviated slightly from the assignment's instructions, as
+follows:
+* I did not define each plotting function in a separate file, but instead
+defined them in the same file, *proj1.R*.
+* For each plotting task, I defined two functions: one that draws the actual
+plot, and the other a wrapper for it that saves the plot to a PNG file. For
+example, *plot1work* draws the histogram and *plot1* saves the histogram to an
+output file. Please keep these two points in mind when grading my work, and
+don't be quick to strike off points because you don't see code under the
+function that you expect to see it. The changes are minimal, and you shouldn't
+have any trouble finding the source code for each plotting task. My reasons for
+going this route are a lack of need, and bad design, to define each of the
+plotting functions in its own file, and to make the whole thing more modular.
+
+Pleasa see below and *proj1.R* for more details.
+
+### My Plot 1
+
+```R
+plot1work <- function(data) {
+  # Constructs a histogram of global active power.
+  # Args:
+  #   data: a data frame with a vector for global active power
+  hist(data$Global_active_power, col='red', main='Global Active Power',
+       xlab='Global active power (kilowatts)')
+}
+```
+
+![My plot 1](plot1.png)
+
+### My Plot 2
+
+```R
+plot2work <- function(data) {
+  # Constructs a plot of global active power over a two day period
+  # Args:
+  #   data: a data frame
+  plot(data$Global_active_power, type='l', xlab='', xaxt='n',
+       ylab='Global active power (kilowatts)')
+  nPoints <- nrow(data)
+  axis(1, at=c(0, nPoints/2, nPoints+1), labels=c('Thu', 'Fri', 'Sat'))
+}
+```
+
+![My plot 2](plot2.png)
+
+### My Plot 3
+
+```R
+plot3work <- function(data) {
+  # Constructs of plot of energy submetering with a legend.
+  # Args:
+  #   data: a data frame
+  plot(data$Sub_metering_1, type='l', xlab='', xaxt='n',
+       ylab='Energy sub metering')
+  lines(data$Sub_metering_2, col='red')
+  lines(data$Sub_metering_3, col='blue')
+  nPoints <- nrow(data)
+  axis(1, at=c(0, nPoints/2, nPoints+1), labels=c('Thu', 'Fri', 'Sat'))
+  legendText <- c('Sub_metering_1', 'Sub_metering_2', 'Sub_metering_3')
+  legend('topright', legend=legendText, col=c('black', 'red', 'blue'), lty=1,
+         bty='n')
+}
+```
+
+![My plot 3](plot3.png)
+
+### My Plot 4
+
+```R
+plot4work <- function(data) {
+  # Creates 4 mini-plots.
+  # Args:
+  #   data: a data frame
+  par(mfcol=c(2,2))
+  plot2work(data)
+  plot3work(data)
+  plot(data$Voltage, type='l', xlab='', xaxt='n', ylab='Voltage')
+  nPoints <- nrow(data)
+  axis(1, at=c(0, nPoints/2, nPoints+1), labels=c('Thu', 'Fri', 'Sat'))
+  plot(data$Global_reactive_power, type='l', xlab='', xaxt='n',
+       ylab='Global reactive power') # position (2,2)
+  axis(1, at=c(0, nPoints/2, nPoints+1), labels=c('Thu', 'Fri', 'Sat'))
+}
+```
+
+![My plot 4](plot4.png)
